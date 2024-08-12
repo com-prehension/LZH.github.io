@@ -84,11 +84,15 @@
                 body: formData
             });
 
+            console.log('Response status:', response.status);
+            const responseData = await response.text();
+            console.log('Response data:', responseData);
+
             if (response.ok) {
                 alert('反馈已提交，感谢您的意见！');
                 form.reset(); // 提交成功后重置表单
             } else {
-                alert('提交失败，请稍后再试。');
+                alert('提交失败：' + responseData);
             }
         } catch (error) {
             console.error('Error:', error);
