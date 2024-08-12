@@ -78,26 +78,26 @@
             formData.append('image', imageUpload.files[0]);
         }
 
-        try {
-            const response = await fetch('http://localhost:3000/submit-feedback', {
-                method: 'POST',
-                body: formData
-            });
 
-            console.log('Response status:', response.status);
-            const responseData = await response.text();
-            console.log('Response data:', responseData);
+        const response = await fetch('http://localhost:3000/submit-feedback', {
+            method: 'POST',
+            body: formData
+        });
 
-            if (response.ok) {
-                alert('反馈已提交，感谢您的意见！');
-                form.reset(); // 提交成功后重置表单
-            } else {
-                alert('提交失败：' + responseData);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('提交失败，请稍后再试。');
+        console.log('Response status:', response.status);
+        const responseData = await response.text();
+        console.log('Response data:', responseData);
+
+        if (response.ok) {
+            alert('反馈已提交，感谢您的意见！');
+            form.reset(); // 提交成功后重置表单
+        } else {
+            alert('提交失败：' + responseData);
         }
+        // } catch (error) {
+        //     console.error('Error:', error);
+        //     alert('提交失败，请稍后再试。');
+        // }
     });
 </script>
 </html>
