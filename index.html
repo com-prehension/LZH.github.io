@@ -55,5 +55,33 @@
     </form>
 </div>
 </body>
+
+<script>
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const data = {
+            username: document.getElementById('username').value,
+            issue: document.getElementById('issue').value,
+            description: document.getElementById('description').value
+        };
+
+        const response = await fetch('http://localhost:3000/submit-feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert('反馈已提交，感谢您的意见！');
+        } else {
+            alert('提交失败，请稍后再试。');
+        }
+    });
+</script>
 </html>
 
