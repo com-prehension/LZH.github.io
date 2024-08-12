@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>意见反馈</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="feedback-container">
+    <h2>意见反馈</h2>
+    <p>您好，为给您提供更加优质、高效的服务，欢迎您留下宝贵的意见。工作人员会对您的个人信息保密，请放心填写，谢谢！</p>
+
+    <div class="submitted-info">
+        <p>你已提交 <strong>1</strong> 次 | 最新提交于 <strong>8月8日</strong></p>
+    </div>
+
+    <form class="feedback-form">
+        <div class="question">
+            <label>您要反馈哪方面的问题？</label>
+            <div>
+                <input type="radio" id="service" name="issue" value="service">
+                <label for="service">服务态度</label>
+            </div>
+            <div>
+                <input type="radio" id="quality" name="issue" value="quality">
+                <label for="quality">质量问题</label>
+            </div>
+            <div>
+                <input type="radio" id="suggestion" name="issue" value="suggestion">
+                <label for="suggestion">投诉建议</label>
+            </div>
+            <div>
+                <input type="radio" id="other" name="issue" value="other">
+                <label for="other">其他</label>
+            </div>
+        </div>
+
+        <div class="detail-description">
+            <label for="description">详细描述</label>
+            <textarea id="description" name="description" placeholder="请详细说明目前的问题及改进意见"></textarea>
+        </div>
+
+        <div class="upload-image">
+            <label for="image-upload">相关图片</label>
+            <input type="file" id="image-upload" name="image-upload" accept="image/*">
+        </div>
+
+        <div class="feedback-person">
+            <label for="username">反馈人</label>
+            <input type="text" id="username" name="username" placeholder="若匿名，可不填写">
+        </div>
+
+        <button type="submit">提交</button>
+    </form>
+</div>
+</body>
+</html>
+
