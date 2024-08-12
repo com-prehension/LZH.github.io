@@ -62,26 +62,38 @@
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const data = {
-            username: document.getElementById('username').value,
-            issue: document.getElementById('issue').value,
-            description: document.getElementById('description').value
-        };
+        const issueElement = document.querySelector('input[name="issue"]:checked');
+        if (!issueElement) {
+            alert('请选择您要反馈的问题类型！');
+            return;
+        }
 
-        const response = await fetch('http://localhost:3000/submit-feedback', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+        const formData = new FormData();
+        formData.append('username', document.getElementById('username').value);
+        formData.append('issue', issueElement.value);
+        formData.append('description', document.getElementById('description').value);
 
-        if (response.ok) {
-            alert('反馈已提交，感谢您的意见！');
-        } else {
+        const imageUpload = document.getElementById('image-upload');
+        if (imageUpload.files.length > 0) {
+            formData.append('image', imageUpload.files[0]);
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/submit-feedback', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                alert('反馈已提交，感谢您的意见！');
+                form.reset(); // 提交成功后重置表单
+            } else {
+                alert('提交失败，请稍后再试。');
+            }
+        } catch (error) {
+            console.error('Error:', error);
             alert('提交失败，请稍后再试。');
         }
     });
 </script>
 </html>
-
